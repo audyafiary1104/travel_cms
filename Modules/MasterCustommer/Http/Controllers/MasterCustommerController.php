@@ -1,7 +1,7 @@
 <?php
 
 namespace Modules\MasterCustommer\Http\Controllers;
-
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
@@ -14,7 +14,8 @@ class MasterCustommerController extends Controller
      */
     public function index()
     {
-        return view('mastercustommer::index');
+        $agent = DB::table('agent')->where('actived',TRUE)->get();
+        return view('mastercustommer::index',compact('agent'));
     }
 
     /**
@@ -78,10 +79,12 @@ class MasterCustommerController extends Controller
     }
     public function hotelier()
     {
-        return view('mastercustommer::hotelier');
+        $hotel = DB::table('hoteliers')->where('actived',TRUE)->get();
+        return view('mastercustommer::hotelier',compact('hotel'));
     }
     public function transaksi()
     {
+        $hotel = DB::table('agent')->where('actived',TRUE)->get();
         return view('mastercustommer::transaksi');
     }
 }

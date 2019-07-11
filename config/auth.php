@@ -46,6 +46,10 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+        'hoteliers'  => [
+            'driver'  => 'session',
+            'provider' => 'hoteliers',
+          ],
     ],
 
     /*
@@ -70,6 +74,11 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
+        'hoteliers' => [
+            'driver' => 'eloquent',
+            'model'  => Modules\Hoteliers\Entities\Hoteliers::class,
+        ],
+        
 
         // 'users' => [
         //     'driver' => 'database',
@@ -99,5 +108,11 @@ return [
             'expire' => 60,
         ],
     ],
-
+    'passwords' => [
+        'hoteliers' => [
+            'provider' => 'hoteliers',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+    ],
 ];

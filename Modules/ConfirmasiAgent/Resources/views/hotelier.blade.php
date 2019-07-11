@@ -16,20 +16,20 @@
                                             <th>Company</th>
                                             <th>Alamat</th>
                                             <th>Email</th>
-                                            <th>Country</th>                                            
                                             <th>action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    @foreach($hoteliers as $hotel)
                                         <tr>
-                                            <td>Audy Afiary</td>
-                                            <td>Hoteliers</td>
-                                            <td>New York</td>
-                                            <td>Afiaryadu@adsada.com</td>
-                                            <td>India</td>
-                                            <td>Konfimasi</td>
+                                            <td>{{$hotel->name}}</td>
+                                            <td>{{$hotel->company}}</td>
+                                            <td>{{$hotel->alamat}}</td>
+                                            <td>{{$hotel->email}}</td>
+                                            <td><button onclick="window.location.href='/confirmasiagent/hotelier/{{$hotel->id_hoteliers}}'" class="btn btn-success">Konfimasi</button>
+</td>
                                         </tr>
-                                       
+                                       @endforeach
                                     </tbody>
                                 </table>
                             </div>

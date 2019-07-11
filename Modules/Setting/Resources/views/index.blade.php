@@ -3,7 +3,6 @@
 @section('content')
 <div class="container">
     <div class="col-lg-10">
-        <form class="form-horizontal" role="form">
 
             <fieldset>
                 <legend>Bank Accounts</legend>
@@ -16,18 +15,14 @@
                                 <h3 class="text-center">Add Bank Account</h3>
                             </div>
                             <hr>
-                            <form action="#" method="post" novalidate="novalidate">
-
-
+                            <form action="{{route('setting.bank.post')}}" method="post" novalidate="novalidate">
+                            @csrf
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="cc-exp" class="control-label mb-1">Routing No</label>
-                                            <input id="cc-exp" name="cc-exp" type="tel" class="form-control cc-exp"
-                                                value="" data-val="true"
-                                                data-val-required="Please enter the card expiration"
-                                                data-val-cc-exp="Please enter a valid month and year"
-                                                placeholder="MM / YY">
+                                            <input id="cc-exp" name="routing_no" type="tel" class="form-control cc-exp"
+                                               >
                                             <span class="help-block" data-valmsg-for="cc-exp"
                                                 data-valmsg-replace="true"></span>
                                         </div>
@@ -94,23 +89,21 @@
             <th>Account Name</th>
             <th>Account No</th>
             <th>Routing No</th>
-
             <th>Type</th>
-
-            <th>Active</th>
             <th>Edit</th>
         </tr>
     </thead>
     <tbody id="gvBankAccounts">
+    @foreach($bank as $bank)        
         <tr>
-            <th scope="row">Audy Afiary</th>
-            <td>0001003133</td>
-            <td>213123</td>
-            <td>Saving</td>
-            <td>Active</td>
+            <th scope="row">{{$bank->account_name}}</th>
+            <td>{{$bank->account_no}}</td>
+            <td>{{$bank->routing_no}}</td>
+            <td>{{$bank->type}}</td>
             <td>  <a  href="#"><i class="fa fa-edit fa-fw" aria-hidden="true"></i></a>
             <a  href="#"><i class="fa fa-trash-o fa-fw" aria-hidden="true"></i></a></td>
         </tr>
+        @endforeach
     </tbody>
 </table>
 </div>

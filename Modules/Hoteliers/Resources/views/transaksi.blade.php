@@ -8,7 +8,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Transaksi</strong>
+                                <strong class="card-title">My Hotel</strong>
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
@@ -34,7 +34,7 @@
                                             <td>1</td>
                                             <td>12-09-2001</td>
                                             <td>12-09-2003</td>
-                                            <td>Paid</td>
+                                            <td>12-09-2003</td>
                                             <td>view details</td>
                                         </tr>
                                        

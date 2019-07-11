@@ -11,6 +11,9 @@
 |
 */
 
-Route::prefix('setting')->group(function() {
+Route::group(['prefix' => 'setting',  'middleware' => 'admin'], function()
+ {
     Route::get('/', 'SettingController@index')->name('setting.bank');
+    Route::post('add_bank', 'SettingController@add_bank')->name('setting.bank.post');
+
 });

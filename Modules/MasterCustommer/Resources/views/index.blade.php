@@ -22,16 +22,17 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    @foreach($agent as $agent)
                                         <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>new york</td>
-                                            <td>afiaryaudy@yahoo.com</td>
-                                            <td>AGT0013</td>
-                                            <td>$320,800</td>
-                                            <td>Horison Corp</td>
+                                            <td>{{$agent->name}}</td>
+                                            <td>{{$agent->alamat}}</td>
+                                            <td>{{$agent->email}}</td>
+                                            <td>{{$agent->agent_code}}</td>
+                                            <td>{{$agent->balance}}</td>
+                                            <td>{{$agent->company}}</td>
                                             <td>Edit</td>
                                         </tr>
-                                       
+                                       @endforeach
                                     </tbody>
                                 </table>
                             </div>

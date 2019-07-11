@@ -1,10 +1,11 @@
 <?php
 
 namespace Modules\ConfirmasiAgent\Http\Controllers;
-
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Str;
 
 class ConfirmasiAgentController extends Controller
 {
@@ -14,7 +15,8 @@ class ConfirmasiAgentController extends Controller
      */
     public function index()
     {
-        return view('confirmasiagent::index');
+        $agent = DB::table('agent')->where('actived',false)->get();
+        return view('confirmasiagent::index',compact('agent'));
     }
 
     /**
@@ -81,7 +83,29 @@ class ConfirmasiAgentController extends Controller
         return view('confirmasiagent::payment');
     }
     public function hotelier()
+    {   $hoteliers = DB::table('hoteliers')->where('actived',false)->get();
+        return view('confirmasiagent::hotelier',compact('hoteliers'));
+    }
+    public function confimasi_hoteliers($id)
     {
-        return view('confirmasiagent::hotelier');
+        $a = rand(1000,10000);
+        $hoteliers = DB::table('hoteliers')->where('id_hoteliers',$id)->update(
+            [
+                'actived' => true,
+                'hotelier_code' => 'HTL'.$a
+            ]
+        );
+        return redirect()->back();
+    }
+    public function konfirmasi_agent($id)
+    {
+        $get = DB::table('agent')->where('id_agent',$id)->first();
+        $a = rand(1000,10000);
+        $agent = DB::table('agent')->where('id_agent',$id)->update([
+            'actived' => true,
+            'agent_code' => 'AGT'.$a,
+            'password' => Str::substr($get->email, 0, 3).$a
+        ]);       
+        return redirect()->back();
     }
 }

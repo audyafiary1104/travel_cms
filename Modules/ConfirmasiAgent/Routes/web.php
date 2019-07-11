@@ -11,9 +11,11 @@
 |
 */
 
-Route::prefix('confirmasiagent')->group(function() {
-    Route::get('/agent', 'ConfirmasiAgentController@index')->name('master_transaksi.agent');
+Route::group(['prefix' => 'confimasi',  'middleware' => 'admin'], function()
+{    Route::get('/agent', 'ConfirmasiAgentController@index')->name('master_transaksi.agent');
+    Route::get('/agent/{id}', 'ConfirmasiAgentController@konfirmasi_agent');
     Route::get('/payment', 'ConfirmasiAgentController@payment')->name('master_transaksi.payment');
     Route::get('/hotelier', 'ConfirmasiAgentController@hotelier')->name('master_transaksi.hotelier');
+    Route::get('/hotelier/{id}', 'ConfirmasiAgentController@confimasi_hoteliers');
 
 });
