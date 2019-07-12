@@ -104,7 +104,7 @@
                 <div>{{Session::get('alert-success')}}</div>
             </div>
             @endif
-            <form action="{{route('login.post')}}" method="post">
+            <form action="{{route('hoteliers.login.post')}}" method="post">
                 @csrf
                 <div class="form-group">
                     <div class="input-group">
@@ -122,7 +122,7 @@
 
                 <button type="submit" class="btn btn-success btn-block">Submit</button>
             </form>
-            <a href="" class="btn btn-success btn-block">register</a>
+            <a href="{{route('hoteliers.register')}}" class="btn btn-success btn-block">register</a>
 
         </article>
     </section>

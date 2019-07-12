@@ -21,6 +21,11 @@ class ProductHoteliers extends Migration
             $table->string('jumlah_unit');
             $table->string('city');
             $table->string('country');
+            $table->string('status_hotels');
+            $table->string('check_in');
+            $table->string('check_out');
+            $table->string('fax');
+            $table->string('email_reservation');
         });
     }
 

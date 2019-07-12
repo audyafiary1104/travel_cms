@@ -26,7 +26,7 @@
                                             <td>{{$hotel->company}}</td>
                                             <td>{{$hotel->alamat}}</td>
                                             <td>{{$hotel->email}}</td>
-                                            <td><button onclick="window.location.href='/confirmasiagent/hotelier/{{$hotel->id_hoteliers}}'" class="btn btn-success">Konfimasi</button>
+                                            <td><button onclick="window.location.href='/confimasi/hotelier/{{$hotel->id_hoteliers}}'" class="btn btn-success">Konfimasi</button>
 </td>
                                         </tr>
                                        @endforeach

@@ -164,7 +164,7 @@
             @endif
         <div class="avatar"></div>
         <div class="form-box">
-            <form action="{{route('post_admin')}}" method="post">
+            <form action="{{route('admin.post')}}" method="post">
             @csrf
                 <input name="username" type="text" placeholder="username">
                 <input type="password" placeholder="password">

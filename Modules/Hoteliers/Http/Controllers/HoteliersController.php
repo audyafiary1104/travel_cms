@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Hash;
 use Session;
+use DB;
 class HoteliersController extends Controller
 {
 
@@ -48,6 +49,7 @@ class HoteliersController extends Controller
         $flight->password = Hash::make($request->password);
 
         $flight->save();
+        return redirect()->route('hoteliers.login')->with('alert','Sudah Register SIlakan Tunggu Konfirmasi Admin dan Cek email');
 
     }
 
@@ -88,12 +90,43 @@ class HoteliersController extends Controller
         //
     }
     public function myHotels()
-    {
-        return view('hoteliers::index');
+    {   
+        $hotels = DB::table('product_hoteliers')->get();
+        if (count($hotels) <= 0) {
+        $images = null;
+    
+    } else {
+        foreach ($hotels as $key => $value) {
+            $images[] = DB::table('image_hotels')->where('id_product', $hotels[$key]->id)->get();
+
+            foreach ($images as $key => $value) {
+                $image_id[$key+1] = $value;
+                // foreach ($image_id as $key => $value) {
+                //     $valuex[] = $value;
+                // }
+            }
+        }
+    }
+    // dd($image_id[1]);
+        return view('hoteliers::index', compact('hotels','image_id'));
     }
     public function room_type()
     {
-        return view('hoteliers::room_type');
+        $hotels = DB::table('type_room')->get();
+        if (count($hotels) <= 0) {
+        $images = null;
+    
+    } else {
+        foreach ($hotels as $key => $value) {
+            $images[] = DB::table('image_type_room')->where('id_type_rooms', $hotels[$key]->id)->get();
+
+            foreach ($images as $key => $value) {
+                $image_id[$key+1] = $value;
+               
+            }
+        }
+    }
+        return view('hoteliers::room_type',compact('hotels','image_id'));
     }
     public function login()
     {
@@ -108,15 +141,15 @@ class HoteliersController extends Controller
             if(Hash::check($password,$data->password)){
                 Session::put('id_hoteliers',$data->id_hoteliers);
                 Session::put('hotelier_code',$data->hotelier_code);
-                Session::put('login',TRUE);
+                Session::put('login_hoteliers',TRUE);
                 return redirect()->route('sales.transaksi');
             }
             else{
-                return redirect()->route('login')->with('alert','Password atau Hoteliers Code, Salah !');
+                return redirect()->route('hoteliers.login')->with('alert','Password atau Hoteliers Code, Salah !');
             }
         }
         else{
-            return redirect()->route('login')->with('alert','Password atau Email, Salah!');
+            return redirect()->route('hoteliers.login')->with('alert','Password atau Email, Salah!');
         }     
 
     }
@@ -124,5 +157,81 @@ class HoteliersController extends Controller
     public function register()
     {
         return view('hoteliers::register');
+    }
+    public function discount()
+    {
+        return view('hoteliers::discount');
+       
+    }
+    public function add_hotel()
+    {
+        return view('hoteliers::add_hotel');
+    }
+    public function add_hotels_post(Request $request)
+    {
+            request()->validate([
+            'uploadFile' => 'required',
+        ]);
+        if ($request->hasfile('uploadFile')) {
+            foreach ($request->file('uploadFile') as $key => $value) {
+                $imageName = time() . $key . '.png';
+                $value->move(public_path('img/hotels_image/'), $imageName);
+                $product_image[] = $imageName;
+            }
+        }
+      
+        $product_id = DB::table('product_hoteliers')->insertGetId([
+            'nama_hotels' => $request->nama_hotel,
+            'alamat_hotels' => $request->alamat_hotel,
+            'jumlah_unit' => $request->jumlah_unit,
+            'city' => $request->city,
+            'country' => $request->country,
+            'status_hotels' => $request->status,
+            'check_in' => $request->check_in,
+            'check_out' => $request->check_out,
+            'fax' => $request->fax,
+            'email_reservation' => $request->email_reservation,
+            'id_hoteliers' => '1',
+        ]);
+        foreach ($product_image as $key => $value) {
+            DB::table('image_hotels')->insertGetId([
+                 'image' => $value,
+                 'id_product' => $product_id
+             ]);
+         }
+        return response()->json(['success' => true]);
+
+    }
+    public function add_rooms()
+    {
+        $hotels = DB::table('product_hoteliers')->get();
+        return view('hoteliers::add_rooms',compact('hotels'));
+    }
+    public function add_rooms_post(Request $request)
+    {
+        if ($request->hasfile('uploadFile')) {
+            foreach ($request->file('uploadFile') as $key => $value) {
+                $imageName = time() . $key . '.png';
+                $value->move(public_path('img/rooms_image/'), $imageName);
+                $product_image[] = $imageName;
+            }
+            $rooms_id = DB::table('type_room')->insertGetId([
+                'id_hotels_product' => $request->nama_hotels,
+                'type_room' => $request->nama_rooms,
+                'breakfest' => $request->breakfest,
+                'status' => $request->status,
+                'smoking' => $request->Smoking,
+                'persons' => $request->Persons,
+                'harga' => $request->price,
+            ]);
+         foreach ($product_image as $key => $value) {
+                DB::table('image_type_room')->insertGetId([
+                     'image' => $value,
+                     'id_type_rooms' => $rooms_id
+                 ]);
+             }   
+        }
+        return response()->json(['success' => true]);
+        
     }
 }

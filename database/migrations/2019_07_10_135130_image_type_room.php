@@ -16,6 +16,8 @@ class ImageTypeRoom extends Migration
         Schema::create('image_type_room', function (Blueprint $table) {
             $table->increments('id');
             $table->string('image');
+            $table->integer('id_type_rooms');
+
         });
     }
 

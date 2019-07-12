@@ -14,7 +14,8 @@ class ImageHotels extends Migration
     public function up()
     {
         Schema::create('image_hotels', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
+            $table->integer('id_product');
             $table->string('image');
         });
     }

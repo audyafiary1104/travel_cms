@@ -11,7 +11,7 @@
 |
 */
 
-Route::group(['prefix' => 'master_custommer',  'middleware' => 'admin'], function()
+Route::group(['prefix' => 'master_custommer'], function()
 {
     Route::get('/agent', 'MasterCustommerController@index')->name('master_agent.index');
     Route::get('/transaksi', 'MasterCustommerController@transaksi')->name('master_transaksi.index');

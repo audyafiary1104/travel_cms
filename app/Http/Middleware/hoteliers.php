@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
-
+use Session;
 class hoteliers
 {
     /**
@@ -15,6 +15,11 @@ class hoteliers
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
-    }
+        if( !Session::get('login_hoteliers')) {
+            return redirect('hoteliers/login')->with('alert','Anda Harus Login');
+        }
+
+        else {
+            return $next($request);
+        }    }
 }

@@ -12,7 +12,7 @@
 */
 
 Route::prefix('agent')->group(function() {
-    Route::get('/', 'AgentController@index');
     Route::post('register', 'AgentController@store')->name('register.agent');
 
 });
+Route::get('/agent/login', 'AgentController@index')->name('agent.login');

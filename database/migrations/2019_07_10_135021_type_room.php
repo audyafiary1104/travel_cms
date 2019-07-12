@@ -15,8 +15,12 @@ class TypeRoom extends Migration
     {
         Schema::create('type_room', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_product');
+            $table->integer('id_hotels_product');
             $table->string('type_room');
+            $table->string('breakfest');
+            $table->string('status');
+            $table->string('smoking');
+            $table->string('persons');
             $table->string('harga');
         });
     }
