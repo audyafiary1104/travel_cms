@@ -57,8 +57,8 @@
                         <div>{{$rooms->persons}}</div>
                     </li>
                     <li class="hb_search_add_to_cart">
-                        <label>status:</label>
-                        <div>{{$rooms->smoking}}</div>
+                        <label>Price:</label>
+                        <div>{{$rooms->harga}}</div>
                     </li>
                     <li class="hb_search_add_to_cart">
                     <button class="main_btn" onclick="window.location.href='{{route('cart.agent',$rooms->id)}}'"  type="submit">Select  room</button>

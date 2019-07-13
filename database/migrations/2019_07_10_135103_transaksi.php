@@ -16,12 +16,15 @@ class Transaksi extends Migration
         Schema::create('transaksi', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_agent');
-            $table->integer('id_product');
             $table->integer('id_type_room');
             $table->integer('jumlah_dibayar');
             $table->date('check_in');
             $table->date('check_out');
-            $table->string('guest_name');
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('price');
+            $table->string('status')->default('paid');
+
         });
     }
 

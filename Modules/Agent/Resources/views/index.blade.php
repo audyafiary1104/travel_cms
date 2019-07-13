@@ -61,7 +61,7 @@
 
                                         <div class="input-group">
 
-                                            <input type="text" name="check-in" id="check_in" class="form-control"
+                                            <input type="date" name="check_in" class="form-control"
                                                 placeholder="DD/MM/YYYY">
 
                                             <span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span>
@@ -76,10 +76,9 @@
 
                                         <div class="input-group">
 
-                                            <input type="text" name="check-out" id="check_out" class="form-control"
+                                            <input type="date" name="check_out"      class="form-control"
                                                 placeholder="DD/MM/YYYY">
 
-                                            <span class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></span>
 
                                         </div>
 

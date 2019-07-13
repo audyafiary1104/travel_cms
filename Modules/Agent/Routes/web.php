@@ -20,7 +20,8 @@ Route::prefix('agent')->group(function() {
     Route::get('details_hotels/{id}', 'AgentController@details_hotels')->name('details.agent');
     Route::get('select_room/{id}', 'AgentController@select_rooms')->name('select_rooms.agent');
     Route::get('cart/{id}', 'AgentController@cart')->name('cart.agent');
-    Route::get('checkout/', 'AgentController@checkout')->name('checkout.agent');
+    Route::get('checkout/{id}', 'AgentController@checkout')->name('checkout.agent');
+    Route::post('checkout/post', 'AgentController@check_out')->name('checkout.agent_post');
     Route::get('transfer_balance/', 'AgentController@transfer_balance')->name('agent.transfer');
     Route::post('transfer_balance/post', 'AgentController@transfer_balance_post')->name('agent.transfer_post');
 

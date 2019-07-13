@@ -7,6 +7,8 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Session;
 use DB;
+use Cookie;
+
 class AgentController extends Controller
 {
     /**
@@ -15,7 +17,14 @@ class AgentController extends Controller
      */
     public function index()
     {
-        return view('agent::index');
+        if (Session::get('check_in')) {
+            Session::forget('check_in');
+            Session::forget('check_out');
+            return view('agent::index');
+
+        }else{
+            return view('agent::index');
+        }
     }
 
     /**
@@ -80,6 +89,8 @@ class AgentController extends Controller
     }
     public function search_hotels(Request $request)
     {
+        Session::put('check_in',$request->check_in);
+        Session::put('check_out',$request->check_out);
         $product_info = DB::table('product_hoteliers')->where('city',$request->search)->get();
         if (count($product_info) <= 0) {
             $product_image = null;
@@ -124,14 +135,27 @@ class AgentController extends Controller
         return view('agent::select_room',compact('rooms','product_image'));
     }
     public function cart($id)
-    {
-        return view('agent::cart');
-
+    {   $cart = DB::table('type_room')->where('id',$id)->first();
+        $check_in = strtotime(Session::get('check_in'));
+        $check_out = strtotime(Session::get('check_out'));
+        $calculate = $check_out - $check_in;
+        $total = round($calculate / (60 * 60 * 24));
+        $night = intval($total);
+        $grand = $cart->harga * $night;
+        $all = $grand *10 / 100;
+        return view('agent::cart',compact('cart','night','grand','all'));
+ 
     }
-    public function checkout()
-    {
-        return view('agent::checkout');
-
+    public function checkout($id)
+    {  $cart = DB::table('type_room')->where('id',$id)->first();
+        $check_in = strtotime(Session::get('check_in'));
+        $check_out = strtotime(Session::get('check_out'));
+        $calculate = $check_out - $check_in;
+        $total = round($calculate / (60 * 60 * 24));
+        $night = intval($total);
+        $grand = $cart->harga * $night;
+        $all = $grand *10 / 100;
+        return view('agent::checkout',compact('cart','night','grand','all'));
     }
     public function transfer_balance()
     {
@@ -158,4 +182,7 @@ class AgentController extends Controller
         return view('agent::login');
       
     }
+    public function check_out(Request $request)
+    {
+dd($request);    }
 }

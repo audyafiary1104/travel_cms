@@ -22,37 +22,31 @@
                             <table class="hb_table">
                                 <thead>
                                     <tr>
-                                        <th>&nbsp;</th>
                                         <th class="hb_room_type">Room type</th>
                                         <th class="hb_capacity">Capacity</th>
-                                        <th class="hb_quantity">Quantity</th>
+                                        <th class="hb_quantity">breakfest</th>
                                         <th class="hb_check_in">Check - in</th>
                                         <th class="hb_check_out">Check - out</th>
                                         <th class="hb_night">Night</th>
+                                        <th class="hb_gross_total">Per night</th>
                                         <th class="hb_gross_total">Gross Total</th>
                                     </tr>
                                 </thead>
 
-                                <tr class="hb_checkout_item" data-cart-id="56fdef1b0fbae513da7a830a3444d24b">
-                                    <td>
-                                        <a href="javascript:void(0)" class="hb_remove_cart_item"
-                                            data-cart-id="56fdef1b0fbae513da7a830a3444d24b">
-                                            <i class="fa fa-times"></i>
-                                        </a>
-                                    </td>
+                                <tr class="hb_checkout_item" >
+                                  
                                     <td class="hb_room_type">
-                                        <a href="http://shtheme.net/demosd/cruise/?hb_room=devlok-hotel-2">Devlok Hotel
-                                            2 (1)</a>
+                                        {{$cart->type_room}}
                                     </td>
-                                    <td class="hb_capacity">1 adult </td>
+                                    <td class="hb_capacity">{{$cart->persons}}}</td>
                                     <td class="hb_quantity">
                                         <p>1</p>
                                     </td>
-                                    <td class="hb_check_in">July 20, 2019</td>
-                                    <td class="hb_check_out">July 27, 2019</td>
-                                    <td class="hb_night">7</td>
-                                    <td class="hb_gross_total">
-                                        &#36;1,150.0 </td>
+                                    <td class="hb_check_in">{{ Session::get('check_in')}}</td>
+                                    <td class="hb_check_out">{{ Session::get('check_out')}}</td>
+                                    <td class="hb_night">{{$night}}</td>
+                                    <td class="hb_night">{{$cart->harga}}</td>
+                                    <td class="hb_gross_total">{{$grand}} </td>
                                 </tr>
 
 
@@ -60,7 +54,7 @@
 
                                 <tr class="hb_sub_total">
                                     <td colspan="8">Sub Total <span class="hb-align-right hb_sub_total_value">
-                                            &#36;5,450.0 </span>
+                                            &#36;{{$grand}}</span>
                                     </td>
                                 </tr>
                                 <tr class="hb_advance_tax">
@@ -71,7 +65,7 @@
                                 <tr class="hb_advance_grand_total">
                                     <td colspan="8">
                                         Grand Total <span
-                                            class="hb-align-right hb_grand_total_value">&#36;5,995.0</span>
+                                            class="hb-align-right hb_grand_total_value">&#36;{{$all}}</span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -80,7 +74,7 @@
                                         value="/demosd/cruise/?page_id=373" /> </tr>
                             </table>
                             <p>
-                                <a href="{{route('checkout.agent')}}"
+                                <a href="{{route('checkout.agent',$cart->id)}}"
                                     class="hb_button hb_checkout">Check Out</a>
                             </p>
                         </form>
@@ -97,4 +91,5 @@
     <!-- /Section: Blog -->
 
 </section>
+
 @stop
