@@ -6,11 +6,9 @@
 
                 <li class="menu-title"></li><!-- /.menu-title -->
                 <li>
-                    <a href="{{route('sales.discount')}}"> <i class="menu-icon ti-email"></i>Balance </a>
+                    <a href="{{route('sales.discount')}}"> <i class="menu-icon ti-email"></i>Dashboard </a>
                 </li>
-                <li>
-                    <a href="{{route('sales.transaksi')}}"> <i class="menu-icon ti-email"></i>My Account</a>
-                </li>
+               
                 </li>
 
 

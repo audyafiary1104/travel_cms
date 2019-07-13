@@ -6,7 +6,7 @@
                 
                 <li class="menu-title">Transaksi</li><!-- /.menu-title -->
                 <li>
-                    <a href="{{route('sales.discount')}}"> <i class="menu-icon ti-email"></i>Discount </a>
+                    <a href="{{route('sales.dashboard')}}"> <i class="menu-icon ti-email"></i>Dashboard </a>
                 </li>
                 <li>
                     <a href="{{route('sales.transaksi')}}"> <i class="menu-icon ti-email"></i>View Transaksi Book</a>

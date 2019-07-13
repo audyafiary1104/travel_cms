@@ -22,6 +22,8 @@ Route::prefix('agent')->group(function() {
     Route::get('cart/{id}', 'AgentController@cart')->name('cart.agent');
     Route::get('checkout/', 'AgentController@checkout')->name('checkout.agent');
     Route::get('transfer_balance/', 'AgentController@transfer_balance')->name('agent.transfer');
+    Route::post('transfer_balance/post', 'AgentController@transfer_balance_post')->name('agent.transfer_post');
+
 });
 Route::get('/agent/login', 'AgentController@login')->name('agent.login');
 Route::post('/agent/login/post', 'AgentController@login_post')->name('agent.login_post');

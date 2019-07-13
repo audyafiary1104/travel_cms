@@ -59,16 +59,16 @@
 			<div class="clearfix"></div>
 			<!-- START: HOTEL LIST VIEW -->
 			<div class="switchable col-md-12 clear-padding">
-                @foreach($product as $product)
+                @foreach($product_info as $key => $product)
 				<div  class="hotel-list-view">
 					<div class="wrapper">
 						<div class="col-md-4 col-sm-6 switch-img clear-padding">
-							                        	<img src="http://shtheme.net/demosd/cruise/wp-content/uploads/2016/05/offer1-4.jpg" alt="cruise">
+						<img src="{{ asset('img/hotels_image/'.$product_image[$key]->image ) }}" alt="">
 													</div>
 						<div class="col-md-6 col-sm-6 hotel-info">
 							<div>
 								<div class="hotel-header">
-									<h5><a href="http://shtheme.net/demosd/cruise/?hb_room=devlok-hotel-6">Devlok Hotel 6</a> <span>
+									<h5><a href="http://shtheme.net/demosd/cruise/?hb_room=devlok-hotel-6">{{$product->nama_hotels}}</a> <span>
 																					<i class="fa fa-star colored"></i><i class="fa fa-star colored"></i><i class="fa fa-star colored"></i><i class="fa fa-star colored"></i><i class="fa fa-star colored"></i>
 																			</span></h5>
 									<p><i class="fa fa-map-marker"></i>{{$product->alamat_hotels}}, {{$product->city}} </p>

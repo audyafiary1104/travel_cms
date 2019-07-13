@@ -13,9 +13,9 @@
                                     <thead>
                                         <tr>
                                             <th>Agent Code</th>
-                                            <th>Guest name</th>
                                             <th>Jumlah Balance</th>    
                                             <th>Bukti pembayaran</th>                                            
+                                            <th>Pajak</th>                                            
                                             <th>Harga</th>      
                                             <th>action</th>
                                         </tr>

@@ -11,8 +11,8 @@
 |
 */
 
-Route::group(['prefix' => 'hoteliers',  'middleware' => 'hoteliers'], function(){
-
+Route::group(['prefix' => 'hoteliers', ], function(){
+    Route::get('/', 'HoteliersController@dashboard')->name('sales.dashboard');
     Route::get('/transaksi', 'HoteliersController@index')->name('sales.transaksi');
     Route::get('/my_hotels', 'HoteliersController@myHotels')->name('sales.myhotels');
     Route::get('/room_type', 'HoteliersController@room_type')->name('sales.room');

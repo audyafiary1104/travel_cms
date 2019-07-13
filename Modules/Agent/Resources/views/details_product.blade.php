@@ -1,11 +1,13 @@
 @extends('agent.booking')
 @section('content')
+@foreach($hotels as $key => $hotel)
+
     <div class="row page-title">
         <div class="container clear-padding text-center">
             <h3>
                 <div class="title">
                     <h4>
-                        <a href="http://shtheme.net/demosd/cruise/?hb_room=devlok-hotel">{{$rooms->nama_hotels}}</a>
+                        <a href="http://shtheme.net/demosd/cruise/?hb_room=devlok-hotel">{{$hotel->nama_hotels}}</a>
                     </h4>
                 </div>
             </h3>
@@ -39,24 +41,14 @@
                     <div class="room_details">
 
                         <div class="hb_room_gallery camera_wrap camera_emboss" id="camera_wrap_380">
-                            <div data-thumb="http://shtheme.net/demosd/cruise/wp-content/uploads/2018/11/hotel-slide-150x150.jpg"
-                                data-src="http://shtheme.net/demosd/cruise/wp-content/uploads/2018/11/hotel-slide-1000x667.jpg">
+                        @foreach($image_id[$key + 1] as $key => $image)
+                          
+                            <div data-thumb="{{ "/img/hotels_image/".$image->image }}"
+                                data-src="{{ "/img/hotels_image/".$image->image }}">
                             </div>
-                            <div data-thumb="http://shtheme.net/demosd/cruise/wp-content/uploads/2018/11/hotel-slide1-150x150.jpg"
-                                data-src="http://shtheme.net/demosd/cruise/wp-content/uploads/2018/11/hotel-slide1-1000x667.jpg">
-                            </div>
-                            <div data-thumb="http://shtheme.net/demosd/cruise/wp-content/uploads/2018/11/hotel-slide2-150x150.jpg"
-                                data-src="http://shtheme.net/demosd/cruise/wp-content/uploads/2018/11/hotel-slide2-1000x667.jpg">
-                            </div>
-                            <div data-thumb="http://shtheme.net/demosd/cruise/wp-content/uploads/2018/11/hotel-slide5-150x150.jpg"
-                                data-src="http://shtheme.net/demosd/cruise/wp-content/uploads/2018/11/hotel-slide5-1000x667.jpg">
-                            </div>
-                            <div data-thumb="http://shtheme.net/demosd/cruise/wp-content/uploads/2018/11/hotel-slide-150x150.jpg"
-                                data-src="http://shtheme.net/demosd/cruise/wp-content/uploads/2018/11/hotel-slide-1000x667.jpg">
-                            </div>
-                            <div data-thumb="http://shtheme.net/demosd/cruise/wp-content/uploads/2018/11/hotel-slide5-150x150.jpg"
-                                data-src="http://shtheme.net/demosd/cruise/wp-content/uploads/2018/11/hotel-slide5-1000x667.jpg">
-                            </div>
+                            @endforeach
+                        
+                           
                         </div>
 
                         <script type="text/javascript">
@@ -80,7 +72,7 @@
 
                 <div class="col-md-4 detail clear-padding">
                     <div class="review sidebar-item">
-                        <h4><i class="fa fa-comments"></i> {{$rooms->nama_hotels}}</h4>
+                        <h4><i class="fa fa-comments"></i> {{$hotel->nama_hotels}}</h4>
                         <div class="sidebar-item-body text-center">
                             <div class="rating-box">
                                 <div class="col-md-6 col-sm-6 col-xs-6 clear-padding tripadvisor">
@@ -107,14 +99,14 @@
                             <div class="guest-say rating-box">
                                 <h2><i class="fa fa-check-circle"></i> Perfect</h2>
                                 <div>
-                                    <p>Address : {{$rooms->alamat_hotels}}, {{$rooms->city}}</p>
+                                    <p>Address : {{$hotel->alamat_hotels}}, {{$hotel->city}}</p>
                                 </div>
                                 <div class="col-md-5 col-sm-5 col-xs-5 clear-padding user-img">
 
                                 </div>
 
                                 <p class="hb-submit">
-				            <button class="main_btn" onclick="window.location.href='{{route('select_rooms.agent',$rooms->id)}}'"  type="submit">Select  room</button>
+				            <button class="main_btn" onclick="window.location.href='{{route('select_rooms.agent',$hotel->id)}}'"  type="submit">Select  room</button>
 				                  </p>
                             </div>
                         </div>
@@ -155,5 +147,6 @@
                                         the like).</p>
 
                                 </div>
+                                @endforeach
 
 @stop

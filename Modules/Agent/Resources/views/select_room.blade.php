@@ -23,7 +23,8 @@
 
 <ul class="hb-search-results">
 
-@foreach($rooms as $rooms)
+@foreach($rooms as $key => $rooms)
+
 <li class="hb-room clearfix">
 
     <form name="hb-search-results"
@@ -34,7 +35,7 @@
                        data-lightbox="hb-room-gallery[384]"
                        data-title="hotel-slide"
                        href="http://shtheme.net/demosd/cruise/wp-content/uploads/2018/11/hotel-slide-1000x667.jpg">
-						<img src="http://shtheme.net/demosd/cruise/wp-content/uploads/2016/05/offer3-1-270x270.jpg" width="270" height="270" alt=""/>                    </a>
+						<img src="{{ asset('img/rooms_image/'.$product_image[$key]->image ) }}" width="270" height="270" alt=""/>                    </a>
 				            </div>
 
             <div class="hb-room-info">

@@ -80,18 +80,48 @@ class AgentController extends Controller
     }
     public function search_hotels(Request $request)
     {
-        $product = DB::table('product_hoteliers')->where('city',$request->search)->get();
-        return view('agent::list_product',compact('product'));
+        $product_info = DB::table('product_hoteliers')->where('city',$request->search)->get();
+        if (count($product_info) <= 0) {
+            $product_image = null;
+        } else {
+            foreach ($product_info as $key => $value) {
+                $product_image[] = DB::table('image_hotels')->where('id_product', $product_info[$key]->id)->first();
+            }
+        }
+        return view('agent::list_product',compact('product_info', 'product_image'));
     }
     public function details_hotels($id)
-    {
-        $rooms = DB::table('product_hoteliers')->where('id',$id)->first();
-        return view('agent::details_product',compact('rooms'));
+    { 
+        $hotels = DB::table('product_hoteliers')->get();
+        if (count($hotels) <= 0) {
+        $images = null;
+
+    } else {
+        foreach ($hotels as $key => $value) {
+            $images[] = DB::table('image_hotels')->where('id_product', $hotels[$key]->id)->get();
+
+            foreach ($images as $key => $value) {
+                $image_id[$key+1] = $value;
+                // foreach ($image_id as $key => $value) {
+                //     $valuex[] = $value;
+                // }
+            }
+        }
     }
+        return view('agent::details_product',compact('hotels','image_id'));
+    }
+
     public function select_rooms($id)
     {
-        $rooms = DB::table('type_room')->where('id_hotels_product',$id)->get();
-        return view('agent::select_room',compact('rooms'));
+        $rooms = DB::table('type_room')->where('id',$id)->get();
+        if (count($rooms) <= 0) {
+            $product_image = null;
+        } else {
+            foreach ($rooms as $key => $value) {
+                $product_image[] = DB::table('image_type_room')->where('id_type_rooms', $rooms[$key]->id)->first();
+            }
+        }
+        return view('agent::select_room',compact('rooms','product_image'));
     }
     public function cart($id)
     {
@@ -105,11 +135,27 @@ class AgentController extends Controller
     }
     public function transfer_balance()
     {
-        return view('agent::transfer');
+        $get_bank = DB::table('bank')->get();
+        return view('agent::transfer',compact('get_bank'));
+    }
+    public function transfer_balance_post(Request $request)
+    {
+        dd($request);
+        $avatar = $request->file('buti_tf'); // in here 
+        $filename = time() . '.' . $avatar->getClientOriginalExtension();        
+        DB::table('transaksi_balance')->insert([
+            'jumlah_balance' => $request->amount,
+            'jumlah_ditf' => $request->jumlah_ditf,
+            'bukti_tf' => $filename,
+            'id_agent' => '1',
+            'confirmasi' => FALSE,
+        ]);
+        $avatar->move(public_path('img/bukti_tf/'), $filename);
+        return redirect()->route('agent.index');
     }
     public function login()
     {
         return view('agent::login');
-        # code...
+      
     }
 }

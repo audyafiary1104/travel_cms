@@ -234,4 +234,8 @@ class HoteliersController extends Controller
         return response()->json(['success' => true]);
 
     }
+    public function dashboard()
+    {
+        return view('hoteliers::dashboard');
+    }
 }

@@ -37,7 +37,7 @@
                                 <td>{{$hotel->status_hotels}}</td>
                                 <td>
                                 @foreach($image_id[$key + 1] as $key => $image)
-                                <img src="{{ "/img/rooms_image/".$image->image }}" alt="" width="100">
+                                <img src="{{ "/img/hotels_image/".$image->image }}" alt="" width="100">
                                 @endforeach
                                 </td>
                                 <td>
