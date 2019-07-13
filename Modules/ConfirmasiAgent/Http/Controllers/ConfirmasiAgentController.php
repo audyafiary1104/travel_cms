@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Str;
-
+use mail;
 class ConfirmasiAgentController extends Controller
 {
     /**
@@ -89,23 +89,40 @@ class ConfirmasiAgentController extends Controller
     public function confimasi_hoteliers($id)
     {
         $a = rand(1000,10000);
+        $b = Str::substr($get->email, 0, 3).$a;
+
         $hoteliers = DB::table('hoteliers')->where('id_hoteliers',$id)->update(
             [
                 'actived' => true,
-                'hotelier_code' => 'HTL'.$a
+                'hotelier_code' => 'HTL'.$a,
+                'password' =>  $b
+
             ]
         );
+        $data = array('name'=> $get->name ,'hotelier_code'=> $get->hotelier_code,
+        'password' =>  $b );
+        Mail::send('confirmasiagent::hotel_mail', $data, function($message) use ($get) {
+        $message->to($get->email, 'Travel Agent')->subject('This is Your hotel code');
+         $message->from('pt_travel_travelan@travel.com','Admin Travel Pantek');
+     });
         return redirect()->back();
     }
     public function konfirmasi_agent($id)
     {
         $get = DB::table('agent')->where('id_agent',$id)->first();
         $a = rand(1000,10000);
+        $b = Str::substr($get->email, 0, 3).$a;
         $agent = DB::table('agent')->where('id_agent',$id)->update([
             'actived' => true,
             'agent_code' => 'AGT'.$a,
-            'password' => Str::substr($get->email, 0, 3).$a
+            'password' =>  $b
         ]);       
+        $data = array('name'=> $get->name ,'agent_code'=> $get->agent_code,
+        'password' =>  $b );
+        Mail::send('confirmasiagent::mail', $data, function($message) use ($get) {
+        $message->to($get->email, 'Travel Agent')->subject('This is Your Agent code');
+         $message->from('pt_travel_travelan@travel.com','Admin Travel Pantek');
+     });
         return redirect()->back();
     }
 }
