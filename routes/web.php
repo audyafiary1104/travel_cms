@@ -12,14 +12,9 @@
 */
 Route::group(['prefix' => 'admin'], function()
 {
-    Route::get('/', function () {
-    return view('welcome');
-})->name('index_admin');
+
     Route::get('login','AdminController@login')->name('login_admin');
     Route::get('logout','AdminController@logout')->name('logout_admin');
 });
 Route::get('admin/login','AdminController@login')->name('login_admin');
 Route::post('admin/login/post','AdminController@post_login')->name('admin.post');
-Route::get('/', function () {
-    return view('home');
-});

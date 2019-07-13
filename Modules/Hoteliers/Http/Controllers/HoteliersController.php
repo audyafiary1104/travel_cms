@@ -15,8 +15,8 @@ class HoteliersController extends Controller
     /**
      * Display a listing of the resource.
      * @return Response
-     */    
-    
+     */
+
 
     public function index()
     {
@@ -53,7 +53,7 @@ class HoteliersController extends Controller
 
     }
 
-  
+
     public function show($id)
     {
         return view('hoteliers::show');
@@ -90,11 +90,11 @@ class HoteliersController extends Controller
         //
     }
     public function myHotels()
-    {   
+    {
         $hotels = DB::table('product_hoteliers')->get();
         if (count($hotels) <= 0) {
         $images = null;
-    
+
     } else {
         foreach ($hotels as $key => $value) {
             $images[] = DB::table('image_hotels')->where('id_product', $hotels[$key]->id)->get();
@@ -115,14 +115,14 @@ class HoteliersController extends Controller
         $hotels = DB::table('type_room')->get();
         if (count($hotels) <= 0) {
         $images = null;
-    
+
     } else {
         foreach ($hotels as $key => $value) {
             $images[] = DB::table('image_type_room')->where('id_type_rooms', $hotels[$key]->id)->get();
 
             foreach ($images as $key => $value) {
                 $image_id[$key+1] = $value;
-               
+
             }
         }
     }
@@ -150,7 +150,7 @@ class HoteliersController extends Controller
         }
         else{
             return redirect()->route('hoteliers.login')->with('alert','Password atau Email, Salah!');
-        }     
+        }
 
     }
 
@@ -161,7 +161,7 @@ class HoteliersController extends Controller
     public function discount()
     {
         return view('hoteliers::discount');
-       
+
     }
     public function add_hotel()
     {
@@ -179,7 +179,7 @@ class HoteliersController extends Controller
                 $product_image[] = $imageName;
             }
         }
-      
+
         $product_id = DB::table('product_hoteliers')->insertGetId([
             'nama_hotels' => $request->nama_hotel,
             'alamat_hotels' => $request->alamat_hotel,
@@ -229,9 +229,9 @@ class HoteliersController extends Controller
                      'image' => $value,
                      'id_type_rooms' => $rooms_id
                  ]);
-             }   
+             }
         }
         return response()->json(['success' => true]);
-        
+
     }
 }

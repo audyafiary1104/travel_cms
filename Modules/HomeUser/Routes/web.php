@@ -12,5 +12,6 @@
 */
 
 Route::prefix('home_user')->group(function() {
-    Route::get('/', 'HomeUserController@index');
+
 });
+Route::get('/', 'HomeUserController@index');
