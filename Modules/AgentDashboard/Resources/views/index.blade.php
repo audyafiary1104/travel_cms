@@ -12,7 +12,7 @@
                                     </div>
                                     <div class="stat-content">
                                         <div class="text-left dib">
-                                            <div class="stat-text">$<span class="count">23569</span></div>
+                                            <div class="stat-text">$<span class="count">{{$user->balance}}</span></div>
                                             <div class="stat-heading">Balance</div>
                                         </div>
                                     </div>
@@ -31,7 +31,7 @@
                                     </div>
                                     <div class="stat-content">
                                         <div class="text-left dib">
-                                            <div class="stat-text"><span class="count">349</span></div>
+                                            <div class="stat-text"><span class="count">{{$book}}</span></div>
                                             <div class="stat-heading">My Booking</div>
                                         </div>
                                     </div>

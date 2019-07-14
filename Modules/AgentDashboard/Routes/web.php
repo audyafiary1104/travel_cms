@@ -13,4 +13,6 @@
 
 Route::prefix('agentdashboard')->group(function() {
     Route::get('/', 'AgentDashboardController@index')->name('agent.dashboard');
+    Route::get('/booking', 'AgentDashboardController@booking')->name('agent.dashboard_booking');
+
 });

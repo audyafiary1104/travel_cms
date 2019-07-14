@@ -21,27 +21,18 @@
                                 <th>Check in</th>
                                 <th>Check out</th>
                                 <th>Status</th>
-                                <th>action</th>
                             </tr>
                         </thead>
                         <tbody>
+                        @foreach($user as $key => $value)
                             <tr>
-                                <td>Spring Lake Room cozy</td>
-                                <td>Shyahid grand city</td>
-                                <td>2%</td>
-                                <td>2%</td>
-                                <td>2%</td>
-
-                                <td>
-                                    </a>
-                                    <a href="/admin" class="icon-block">
-                                        <i class="fa  fa-pencil"></i>
-                                        Cetak Vocher
-                                    </a>
-                                   
-                                </td>
+                                <td>{{$product_hoteliers[$key]->nama_hotels}}</td>
+                                <td>{{$type_room[$key]->type_room}}</td>
+                                <td>{{$value->check_in}}</td>
+                                <td>{{$value->check_out}}</td>
+                                <td>{{$value->status}}</td>
                             </tr>
-
+                     @endforeach
                         </tbody>
                     </table>
                 </div>

@@ -85,7 +85,11 @@ class MasterCustommerController extends Controller
     public function transaksi()
     {
         $transaksi = DB::table('transaksi')->get();
-        return view('mastercustommer::transaksi',compact('transaksi'));
+        $a = DB::table('type_room')->get();
+        $b = DB::table('product_hoteliers')->get();
+         $c = DB::table('agent')->get();
+         
+        return view('mastercustommer::transaksi',compact('transaksi','a','b','c'));
     }
     public function transaksi_balance()
     {

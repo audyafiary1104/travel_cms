@@ -185,9 +185,8 @@ class AgentController extends Controller
     }
     public function check_out(Request $request)
     {
-       
         $balance = DB::table('agent')->where('id_agent',Session::get('id_agent'))->first();
-        if($balance->balance >= $request->total_price){
+        if($balance->balance <= $request->total_price){
             return redirect()->back()->with('alert','Saldo Tidak CUkup!');
         }else{
             $ppn=0.1;
@@ -197,13 +196,13 @@ class AgentController extends Controller
             DB::table('transaksi')->insert([
                 'id_agent' => Session::get('id_agent'),
                 'id_type_room' => $request->id_type_room,
-                'jumlah_dibayar' => $request->total_price,
+                'jumlah_dibayar' => $request->price,
                 'check_in' => $request->cekin,
                 'check_out' => $request->cekout,
                 'title' => $request->title,
                 'first_name' => $request->first_name,
                 'last_name' => $request->last_name,
-                'price' => $request->total_price,
+                'price' => $request->price,
                 'tax' => $harga_sekarang,
             ]);
              return view('agent::thanksyou',compact('balance'));

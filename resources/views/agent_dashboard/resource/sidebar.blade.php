@@ -6,7 +6,7 @@
 
                 <li class="menu-title"></li><!-- /.menu-title -->
                 <li>
-                    <a href="{{route('sales.discount')}}"> <i class="menu-icon ti-email"></i>Dashboard </a>
+                    <a href="{{route('agent.dashboard')}}"> <i class="menu-icon ti-email"></i>Dashboard </a>
                 </li>
                
                 </li>
@@ -15,7 +15,7 @@
                 <li class="menu-title">Reservation</li><!-- /.menu-title -->
 
                 <li>
-                    <a href="{{route('sales.myhotels')}}"> <i class="menu-icon ti-email"></i>My Booking</a>
+                    <a href="{{route('agent.dashboard_booking')}}"> <i class="menu-icon ti-email"></i>My Booking</a>
                 </li>
 
                 </li>

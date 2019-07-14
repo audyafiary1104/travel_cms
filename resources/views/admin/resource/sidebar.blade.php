@@ -31,9 +31,7 @@
                 <li>
                     <a href="{{route('master_transaksi.payment')}}"> <i class="menu-icon ti-email"></i>Confimasi  Balance</a>
                 </li>
-                <li>
-                    <a href="{{route('master_transaksi.payment')}}"> <i class="menu-icon ti-email"></i>Confimasi  Hotels</a>
-                </li>
+                
                 <li>
                     <a href="{{route('master_transaksi.agent')}}"> <i class="menu-icon ti-email"></i>Confimasi Agent </a>
                 </li>  <li>

@@ -18,27 +18,27 @@
                                             <th>Nama Guest</th>
                                             <th>check in </th>
                                             <th>check out</th>
-                                            <th>Nomor Booking</th>
                                             <th>Status</th>
                                             <th>total</th>
                                             <th>action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($transaksi as $t)
                                         <tr>
-                                            <td>{{$t->agent_code}}</td>
-                                            <td>{{$t->jumlah_dibayar}}</td>
-                                            <td>Audy Afiary</td>
-                                            <td>{{$t->title}} {{$t->firstname}} {{$t->last_name}}</td>
-                                            <td>19/07/2018</td>
-                                            <td>20/07/2018</td>
-                                            <td>329100310</td>
-                                            <td>Paid</td>
+                                        @foreach($transaksi as $key => $value)
+                                            <td>{{$c[$key]->agent_code}}</td>
+                                            <td>{{$value->tax}}</td>
+                                            <td>{{$b[$key]->nama_hotels}}</td>
+                                            <td>{{$value->title}} {{$value->first_name}} {{$value->last_name}}</td>
+                                            <td>{{$value->check_in}}</td>
+                                            <td>{{$value->check_out}}</td>
+                                            <td>{{$value->status}}</td>
+
+                                            <td>{{$value->price}}</td>
                                             <td>Delete</td>
                                         </tr>
-                                       @endforeach
-                                    </tbody>
+                                        @endforeach
+                                        </tbody>
                                 </table>
                             </div>
                         </div>
