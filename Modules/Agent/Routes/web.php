@@ -24,7 +24,11 @@ Route::prefix('agent')->group(function() {
     Route::post('checkout/post', 'AgentController@check_out')->name('checkout.agent_post');
     Route::get('transfer_balance/', 'AgentController@transfer_balance')->name('agent.transfer');
     Route::post('transfer_balance/post', 'AgentController@transfer_balance_post')->name('agent.transfer_post');
+    Route::get('thanks_you', 'AgentController@thanks_you')->name('agent.thanks_you');
 
 });
 Route::get('/agent/login', 'AgentController@login')->name('agent.login');
 Route::post('/agent/login/post', 'AgentController@login_post')->name('agent.login_post');
+Route::post('register', 'AgentController@store')->name('register.agent');
+Route::get('/agent/register', 'AgentController@register')->name('register.agent_get');
+

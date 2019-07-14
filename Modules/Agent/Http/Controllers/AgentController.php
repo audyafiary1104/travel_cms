@@ -21,8 +21,8 @@ class AgentController extends Controller
             Session::forget('check_in');
             Session::forget('check_out');
             return view('agent::index');
-
         }else{
+            
             return view('agent::index');
         }
     }
@@ -47,7 +47,7 @@ class AgentController extends Controller
             'company' => $request->company,
             'alamat' => $request->alamat,
         ]);
-        return redirect()->back();
+        return redirect()->route('agent.login');
     }
 
     /**
@@ -60,10 +60,10 @@ class AgentController extends Controller
     {
         $hotelier = $request->agent_code;
         $password = $request->password;
-        $data = DB::table('agent')->where('agent_code',$hotelier)->first();
+        $data = DB::table('agent')->where('agent_code',$request->agent_code)->first();
         if($data){
             if($password == $data->password){
-                Session::put('id_hoteliers',$data->id_agent);
+                Session::put('id_agent',$data->id_agent);
                 Session::put('agent_code',$data->agent_code);
                 Session::put('balance',$data->balance);
 
@@ -164,14 +164,15 @@ class AgentController extends Controller
     }
     public function transfer_balance_post(Request $request)
     {
-        dd($request);
-        $avatar = $request->file('buti_tf'); // in here 
-        $filename = time() . '.' . $avatar->getClientOriginalExtension();        
+        $avatar = $request->file('bukti_tf'); // in here 
+        $filename = time() . '.' . $avatar->getClientOriginalExtension(); 
         DB::table('transaksi_balance')->insert([
             'jumlah_balance' => $request->amount,
-            'jumlah_ditf' => $request->jumlah_ditf,
+            'jumlah_ditf' => $request->jmlh,
             'bukti_tf' => $filename,
-            'id_agent' => '1',
+            'pajak' => $request->pajak,
+            'biaya_admin' => $request->admin,
+            'id_agent' => Session::get('id_agent'),
             'confirmasi' => FALSE,
         ]);
         $avatar->move(public_path('img/bukti_tf/'), $filename);
@@ -184,5 +185,33 @@ class AgentController extends Controller
     }
     public function check_out(Request $request)
     {
-dd($request);    }
+       
+        $balance = DB::table('agent')->where('id_agent',Session::get('id_agent'))->first();
+        if($balance->balance >= $request->total_price){
+            return redirect()->back()->with('alert','Saldo Tidak CUkup!');
+        }else{
+            $ppn=0.1;
+            $hitung_ppn =$request->total_price*$ppn;
+            $harga_sekarang = $request->total_price - $hitung_ppn;
+
+            DB::table('transaksi')->insert([
+                'id_agent' => Session::get('id_agent'),
+                'id_type_room' => $request->id_type_room,
+                'jumlah_dibayar' => $request->total_price,
+                'check_in' => $request->cekin,
+                'check_out' => $request->cekout,
+                'title' => $request->title,
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'price' => $request->total_price,
+                'tax' => $harga_sekarang,
+            ]);
+             return view('agent::thanksyou',compact('balance'));
+        }
+    }
+    public function register()
+    {
+        return view('agent::register');
+    }
+   
 }

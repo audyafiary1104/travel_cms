@@ -20,6 +20,9 @@
 
                         <form action="{{route('agent.transfer_post')}}" method="post" enctype="multipart/form-data">
                             @csrf
+                            <input type="hidden" class="form-control admin" id="date" name="admin">
+                            <input type="hidden" class="form-control pajak" id="date" name="pajak">
+                            <input type="hidden" class="form-control jmlh" id="date" name="jmlh">
                             <div class="form-group">
                                 <label for="amount" class="col-sm-3 control-label">Jumlah Balance</label>
                                 <div class="col-sm-9">
@@ -30,13 +33,13 @@
                             <div class="form-group">
                                 <label for="date" class="col-sm-3 control-label">Uploud Bukti Transfer</label>
                                 <div class="col-sm-9">
-                                    <input type="file" class="form-control" id="date" name="buti_tf">
+                                    <input type="file" class="form-control" name="bukti_tf">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="date" class="col-sm-3 control-label">Pajak</label>
                                 <div class="col-sm-9">
-                                    <input type="dibayar"  class="form-control" id="pajak" name="date" disabled>
+                                    <input type="dibayar" class="form-control" id="pajak" name="date" disabled>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -117,7 +120,9 @@ $(document).ready(function () {
         var admin = $("#admin").val();
         var k = +jumlah + +admin + +i;
         parseInt($("#dbayar").attr("value",+k));    
-
+        $(".admin").attr("value",+admin);
+        $(".pajak").attr("value",+jumlah);
+        $(".jmlh").attr("value",+k);
     });
 });
 </script>

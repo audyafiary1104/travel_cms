@@ -83,7 +83,7 @@ body {padding-top:50px;}
                     <p style="text-align:justify;font-style:normal;font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
                                                 font-size: 14px;">
                         For customer enquiries, please contact our customer care team
-                        <span style="color:#002469">{{GlobalSettings.CustomerSupportNo}}</span>
+                        <span style="color:#002469"></span>
                     </p>
                     <br /><br />
                     <p style="text-align:center;font-style:italic;font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;

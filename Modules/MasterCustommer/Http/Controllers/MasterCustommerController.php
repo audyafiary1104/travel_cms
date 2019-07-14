@@ -84,7 +84,15 @@ class MasterCustommerController extends Controller
     }
     public function transaksi()
     {
-        $hotel = DB::table('agent')->where('actived',TRUE)->get();
-        return view('mastercustommer::transaksi');
+        $transaksi = DB::table('transaksi')->get();
+        return view('mastercustommer::transaksi',compact('transaksi'));
+    }
+    public function transaksi_balance()
+    {
+        $balance = DB::table('transaksi_balance')->
+        join('agent','transaksi_balance.id_agent','=','agent.id_agent')->where('confirmasi',TRUE)->get(); 
+    
+        return view('mastercustommer::balance',compact('balance'));
+    
     }
 }

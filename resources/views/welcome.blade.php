@@ -12,8 +12,8 @@
                                     </div>
                                     <div class="stat-content">
                                         <div class="text-left dib">
-                                            <div class="stat-text">$<span class="count">23569</span></div>
-                                            <div class="stat-heading">Revenue</div>
+                                            <div class="stat-text">$<span class="count">{{$keuntungan}}</span></div>
+                                            <div class="stat-heading">Jumlah Keuntungan</div>
                                         </div>
                                     </div>
                                 </div>
@@ -30,8 +30,8 @@
                                     </div>
                                     <div class="stat-content">
                                         <div class="text-left dib">
-                                            <div class="stat-text"><span class="count">3435</span></div>
-                                            <div class="stat-heading">Sales</div>
+                                            <div class="stat-text"><span class="count">{{$transaksi}}</span></div>
+                                            <div class="stat-heading">jumlah transaksi</div>
                                         </div>
                                     </div>
                                 </div>
@@ -48,8 +48,8 @@
                                     </div>
                                     <div class="stat-content">
                                         <div class="text-left dib">
-                                            <div class="stat-text"><span class="count">349</span></div>
-                                            <div class="stat-heading">Templates</div>
+                                            <div class="stat-text"><span class="count">{{$hoteliers}}</span></div>
+                                            <div class="stat-heading">Jumlah Hoteliers</div>
                                         </div>
                                     </div>
                                 </div>
@@ -65,8 +65,8 @@
                                     </div>
                                     <div class="stat-content">
                                         <div class="text-left dib">
-                                            <div class="stat-text"><span class="count">2986</span></div>
-                                            <div class="stat-heading">Clients</div>
+                                            <div class="stat-text"><span class="count">{{$agent}}</span></div>
+                                            <div class="stat-heading">Jumlah agent</div>
                                         </div>
                                     </div>
                                 </div>

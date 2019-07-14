@@ -7,6 +7,16 @@ use DB;
 use Session;
 class AdminController extends Controller
 {
+    public function index()
+    {   $untung = DB::table('transaksi')->sum('tax');
+        $balance = DB::table('transaksi_balance')->sum(DB::raw('pajak + biaya_admin'));;
+        $agent = count(DB::table('agent')->get());
+        $hoteliers = count(DB::table('hoteliers')->get());
+        $transaksi = count(DB::table('transaksi')->get());
+        $keuntungan = $balance + $untung;
+        return view('welcome',compact('keuntungan','transaksi','hoteliers','agent'));
+        # code...
+    }
    public function login()
    {
        return view('login');
@@ -28,5 +38,5 @@ class AdminController extends Controller
    {
     Session::flush();
     return redirect()->route('login_admin')->with('alert','Kamu SUdah Logout');
-}
+    }
 }

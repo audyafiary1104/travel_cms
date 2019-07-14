@@ -5,7 +5,8 @@ namespace Modules\AgentDashboard\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
-
+use DB;
+use  Session;
 class AgentDashboardController extends Controller
 {
     /**
@@ -13,7 +14,7 @@ class AgentDashboardController extends Controller
      * @return Response
      */
     public function index()
-    {
+    {  $user = DB::table('agent')->where('id',Session::get('id_agent'));
         return view('agentdashboard::index');
     }
 

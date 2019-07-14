@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Str;
-use mail;
+use Mail;  
 class ConfirmasiAgentController extends Controller
 {
     /**
@@ -79,8 +79,19 @@ class ConfirmasiAgentController extends Controller
 
     }
     public function payment()
+    { $balance = DB::table('transaksi_balance')->
+        join('agent','transaksi_balance.id_agent','=','agent.id_agent')->where('confirmasi',FALSE)->get();
+        return view('confirmasiagent::payment',compact('balance'));
+    }
+    public function payment_confirm($id,$balance)
     {
-        return view('confirmasiagent::payment');
+        DB::table('transaksi_balance')->
+        join('agent','transaksi_balance.id_agent','=','agent.id_agent')
+        ->where('transaksi_balance.id',$id)->update([
+            'confirmasi' => true,
+            'balance' => $balance
+        ]);
+        return redirect()->back();
     }
     public function hotelier()
     {   $hoteliers = DB::table('hoteliers')->where('actived',false)->get();
@@ -114,7 +125,7 @@ class ConfirmasiAgentController extends Controller
         $b = Str::substr($get->email, 0, 3).$a;
         $agent = DB::table('agent')->where('id_agent',$id)->update([
             'actived' => true,
-            'agent_code' => 'AGT'.$a,
+            'agent_code' =>  $b,
             'password' =>  $b
         ]);       
         $data = array('name'=> $get->name ,'agent_code'=> $get->agent_code,

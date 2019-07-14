@@ -15,7 +15,16 @@
                 <!-- blog -->
                 <div class="col-md-9 col-blog-posts" class="post-374 page type-page status-publish hentry">
 
-
+                @if(\Session::has('alert'))
+            <div class="alert alert-danger">
+                <div>{{Session::get('alert')}}</div>
+            </div>
+            @endif
+            @if(\Session::has('alert-success'))
+            <div class="alert alert-success">
+                <div>{{Session::get('alert-success')}}</div>
+            </div>
+            @endif
                     <div id="hotel-booking-payment">
 
                     <form id="hb-cart-form" action="{{route('checkout.agent_post')}}" method="post">
@@ -49,10 +58,6 @@
                                     <td class="hb_night">{{$cart->harga}}</td>
                                     <td class="hb_gross_total">{{$grand}} </td>
                                 </tr>
-
-
-
-
                                 <tr class="hb_sub_total">
                                     <td colspan="8">Sub Total <span class="hb-align-right hb_sub_total_value">
                                             &#36;{{$grand}}</span>
@@ -65,8 +70,8 @@
                                 </tr>
                                 <tr class="hb_advance_grand_total">
                                     <td colspan="8">
-                                        Grand Total <span
-                                            class="hb-align-right hb_grand_total_value">&#36;{{$all}}</span>
+                                        Grand Total
+ <span class="hb-align-right hb_grand_total_value">&#36;{{$all}}</span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -165,10 +170,14 @@
                                     <textarea name="addition_information"></textarea>
                                 </div>
                             </div> 
-                            <input type="hidden" name="type_room" value="{{$cart->id}}" />
+                            <input type="hidden" name="id_type_room" value="{{$cart->id}}" />
                             <input type="hidden" name="harga_permalam" value="{{$cart->harga}}" />
-                            <input type="hidden" name="total_price" value="{{$all}}" />
+                            <input type="hidden" name="price" value="{{$grand}}" />
                             <input type="hidden" name="night" value="{{$night}}">
+                            <input type="hidden" name="cekin" value="{{ Session::get('check_in')}}">
+                            <input type="hidden" name="cekout" value="{{ Session::get('check_out')}}">
+
+                            <input type="hidden" name="id_hotels_product" value="{{$cart->id_hotels_product}}">
                             <p>
                                 <label>
                                     <input type="checkbox" name="tos" value="1" />

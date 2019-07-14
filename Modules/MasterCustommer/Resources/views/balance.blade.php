@@ -24,13 +24,13 @@
                                     <tbody>
                                     @foreach($balance as $balance)
                                         <tr>
-                                            <td>{{$balance->name}}</td>
+                                            <td>{{$balance->agent_code}}</td>
                                             <td>{{$balance->jumlah_balance}}</td>
                                             <td><img src="{{ "/img/bukti_tf/".$balance->bukti_tf }}" alt="" width="100"></td>
                                             <td>{{$balance->biaya_admin}}</td>
                                             <td>{{$balance->pajak}}</td>
                                             <td>{{$balance->jumlah_ditf}} </td>
-                                            <td><button type="button" onclick="window.location.href='{{ route('master_transaksi.payment_confim', [$balance->id, $balance->jumlah_balance]) }}' "class="btn btn-success">Konfimasi</button>
+                                            <td><button type="button" onclick="window.location.href='#' "class="btn btn-danger">Hapus</button>
 </td>
                                         </tr>
                                        @endforeach

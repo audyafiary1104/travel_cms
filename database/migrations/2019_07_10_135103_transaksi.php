@@ -18,9 +18,11 @@ class Transaksi extends Migration
             $table->integer('id_agent');
             $table->integer('id_type_room');
             $table->integer('jumlah_dibayar');
+            $table->integer('tax');
             $table->date('check_in');
             $table->date('check_out');
             $table->string('first_name');
+            $table->string('title');
             $table->string('last_name');
             $table->string('price');
             $table->string('status')->default('paid');

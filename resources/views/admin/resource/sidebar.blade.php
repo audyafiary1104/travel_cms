@@ -19,7 +19,9 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Master Transaksi</a>
                     <ul class="sub-menu children dropdown-menu">
-                        <li><i class="fa fa-table"></i><a href="{{route('master_transaksi.index')}}">transaksi</a></li>
+                        <li><i class="fa fa-table"></i><a href="{{route('master_agent.transaksi_balance')}}">transaksi balance</a></li>
+                        <li><i class="fa fa-table"></i><a href="{{route('master_transaksi.index')}}">transaksi hotels</a></li>
+                    
                     </ul>
                 </li>
                
@@ -27,7 +29,10 @@
                 <li class="menu-title">Confirmasi</li><!-- /.menu-title -->
 
                 <li>
-                    <a href="{{route('master_transaksi.payment')}}"> <i class="menu-icon ti-email"></i>Confimasi Transaksi </a>
+                    <a href="{{route('master_transaksi.payment')}}"> <i class="menu-icon ti-email"></i>Confimasi  Balance</a>
+                </li>
+                <li>
+                    <a href="{{route('master_transaksi.payment')}}"> <i class="menu-icon ti-email"></i>Confimasi  Hotels</a>
                 </li>
                 <li>
                     <a href="{{route('master_transaksi.agent')}}"> <i class="menu-icon ti-email"></i>Confimasi Agent </a>

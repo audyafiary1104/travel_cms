@@ -280,16 +280,19 @@ h1{
     </div>
 
     <!-- Login Form -->
-    <form action="{{route('agent.login_post')}}" method="post" >
+    <form action="{{route('register.agent')}}" method="post" >
         @csrf
-      <input type="text" id="login" class="fadeIn second" name="agent_code" placeholder="username">
-      <input type="text" id="password" class="fadeIn third" name="password" placeholder="password">
+      <input type="text" id="login" class="fadeIn second" name="name" placeholder="name">
+      <input type="text" id="login" class="fadeIn second" name="alamat" placeholder="alamat">
+      <input type="text" id="login" class="fadeIn second" name="phone_number" placeholder="phone_number">
+      <input type="text" id="login" class="fadeIn second" name="email" placeholder="email">
+      <input type="text" id="password" class="fadeIn third" name="company" placeholder="company">
       <input type="submit" class="fadeIn fourth" value="Log In">
     </form>
 
     <!-- Remind Passowrd -->
     <div id="formFooter">
-      <a class="underlineHover" href="{{route('register.agent_get')}}">register</a>
+      <a class="underlineHover" href="{{route('agent.login')}}">register</a>
     </div>
 
   </div>
